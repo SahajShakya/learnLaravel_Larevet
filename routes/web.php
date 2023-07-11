@@ -17,10 +17,17 @@ use App\Models\Listing;
 |
 */
 //all listings
-Route::get('/listing', [ListingController::class, 'index']);
-//single listing
+Route::get('/', [ListingController::class, 'index']);
 
-Route::get('/listing/{listing}', [ListingController::class, 'show']);
+//show create form
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+//store create form
+Route::post('/listings', [ListingController::class, 'store']);
+
+
+//single listing
+Route::get('/{listing}', [ListingController::class, 'show']);
 
 //common Resources Routes
 // index => show all listing

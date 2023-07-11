@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
     //Show all listings
     public function  index() {
+//        dd(request('tag'));
         return view('listings.index', [
-            'heading' => 'Sent from value',
-            'listings' => Listing::all(),
+            'listings' => Listing::latest()->filter(request(['tag','search']))->get()
+            ///in query select * from 'listing' order by 'created at' desc  (Listing::latest())
         ]);
     }
     //show single listing
@@ -19,5 +21,24 @@ class ListingController extends Controller
         return view('listings.show', [
             'listing' => $listing
         ]);
+    }
+
+    public function create() {
+        return view('listings.create');
+    }
+
+    public function store(Request $request) {
+//        dd($request->all());
+        $formFields = $request->validate([
+            'title' => 'required',
+            'company' => ['required', Rule::unique('listings', 'company')],
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required',
+        ]);
+        Listing::create($formFields);
+        return redirect('/');
     }
 }

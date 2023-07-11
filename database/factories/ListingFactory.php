@@ -14,15 +14,15 @@ class ListingFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
             'title' => $this->faker->sentence(),
             'tags' => 'laravel, api, backend',
             'company' => $this->faker->company(),
-            'location' => $this->faker->city(),
             'email' => $this->faker->companyEmail(),
             'website' => $this->faker->url(),
+            'location' => $this->faker->city(),
             'description' => $this->faker->paragraph(1),
         ];
     }
