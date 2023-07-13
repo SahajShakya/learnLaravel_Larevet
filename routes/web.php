@@ -34,6 +34,8 @@ Route::get('/listings/{listing}/edit',[ListingController::class, 'edit'])->middl
 Route::put('/listings/{listing}',[ListingController::class, 'update'])->middleware('auth');
 // Delete
 Route::delete('/listings/{listing}',[ListingController::class, 'delete'])->middleware('auth');
+//MangeListing
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
 //Create form Register
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 //Create form login
@@ -46,6 +48,7 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/users/auth',[UserController::class, 'authenticate'])->middleware('guest');
 //single listing
 Route::get('/{listing}', [ListingController::class, 'show'])->middleware('guest');
+
 
 //common Resources Routes
 // index => show all listing

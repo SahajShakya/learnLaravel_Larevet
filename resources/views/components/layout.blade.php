@@ -41,7 +41,7 @@
 
             </li>
             <li>
-                <a href="/listing/manage" class="hover:text-laravel"
+                <a href="/listings/manage" class="hover:text-laravel"
                 ><i class="fa-solid fa-arrow-right-to-bracket"></i>
                     Manage Listing</a
                 >
